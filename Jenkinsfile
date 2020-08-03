@@ -9,7 +9,7 @@ pipeline {
       agent any
       steps {
         withSonarQubeEnv('SonarQube') {
-          sh 'mvn clean org.pitest:pitest-maven:mutationCoverage package sonar:sonar'
+          sh 'mvn clean verify org.pitest:pitest-maven:mutationCoverage package sonar:sonar'
         }
       }
     }
