@@ -80,10 +80,6 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.name", is(user.getName())));
     }
 
-    //@Test
-    void shouldFetchOneUserById11() throws Exception {
-        
-    }
-    
+       
 
 }
