@@ -4,6 +4,8 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS')
         sendSplunkConsoleLog()
+        splunkins.sendTestReport(50)
+        splunkins.sendCoverageReport(50)
     }
   environment {
     PROJECT_NAME= "${project}"
