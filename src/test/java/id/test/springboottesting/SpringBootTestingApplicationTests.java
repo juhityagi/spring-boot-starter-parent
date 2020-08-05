@@ -10,4 +10,9 @@ class SpringBootTestingApplicationTests {
 	void contextLoads() {
 	}
 
+	/*
+	 * @Test public void main() { SpringBootTestingApplication.main(new String[]
+	 * {}); }
+	 */
+
 }
