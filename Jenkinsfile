@@ -30,7 +30,7 @@ pipeline {
       agent none
       steps { 
         script {
-            splunkins.archive("**/*.log", null, false, "10MB")
+            splunkins.getBuildEvent()
           }
       }
     }
