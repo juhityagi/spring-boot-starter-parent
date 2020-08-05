@@ -223,7 +223,12 @@
 					</dependencies>
 					<executions>
 						<execution>
-
+							<id>pit-test</id>
+							<!-- optional, this example attached the goal into mvn test phase -->
+							<phase>test</phase>
+							<goals>
+							    <goal>mutationCoverage</goal>
+							</goals>
 						</execution>
 					</executions>
 					<configuration>
