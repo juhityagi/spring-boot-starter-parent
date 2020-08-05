@@ -1,10 +1,5 @@
 def project="${JOB_NAME}".split('/')[0]
 pipeline {
-  agent any
-    options {
-        timeout(time: 1, unit: 'HOURS')
-        sendSplunkConsoleLog()
-    }
   environment {
     PROJECT_NAME= "${project}"
   }
