@@ -26,13 +26,11 @@ pipeline {
         }
 	    }
     }
-  }
-	post {
-        success {
-            script {
-                splunkins.archive("**/*.log", null, false, "10MB")
-            }
-        }
+    stage {
+      script {
+        splunkins.archive("**/*.log", null, false, "10MB")
+      }
     }
 
+  }
 }
