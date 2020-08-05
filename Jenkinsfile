@@ -5,15 +5,15 @@ pipeline {
     PROJECT_NAME= "${project}"
   }
   stages {
-    stage("build & SonarQube analysis") {
+    stage("Build, Test and Quality Gate Analysis") {
       agent any
       steps {
         withSonarQubeEnv('SonarQube') {
-          sh 'mvn clean verify org.pitest:pitest-maven:mutationCoverage package sonar:sonar'
+          sh 'mvn clean verify package sonar:sonar'
         }
       }
     }
-    stage ("SonarQube analysis") { 
+    stage ("SonarQube Quality Gate Check") { 
       agent none
       steps { 
         script{
@@ -26,14 +26,5 @@ pipeline {
         }
 	    }
     }
-    stage ("Send Logs to Splunk") {
-      agent none
-      steps { 
-        script {
-            splunkins.getBuildEvent()
-          }
-      }
-    }
-
   }
 }
