@@ -28,7 +28,9 @@ pipeline {
     }
     stage {
       script {
-        splunkins.archive("**/*.log", null, false, "10MB")
+        steps {
+          splunkins.archive("**/*.log", null, false, "10MB")
+        }
       }
     }
 
