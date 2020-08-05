@@ -31,5 +31,12 @@ pipeline {
 	    }
     }
   }
+	post {
+        success {
+            script {
+                splunkins.archive("**/*.log", null, false, "10MB")
+            }
+        }
+    }
 
 }
