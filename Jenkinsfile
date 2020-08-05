@@ -26,11 +26,12 @@ pipeline {
         }
 	    }
     }
-    stage {
-      script {
-        steps {
-          splunkins.archive("**/*.log", null, false, "10MB")
-        }
+    stage ("Send Logs to Splunk") {
+      agent none
+      steps { 
+        script {
+            splunkins.archive("**/*.log", null, false, "10MB")
+          }
       }
     }
 
