@@ -25,10 +25,13 @@ class UserServiceTest {
 
 	@Test
 	void shouldReturnFindAll() {
-		List<User> datas = new ArrayList<User>();
-		datas.add(new User(1L, "ten@mail.com", "teten", "teten"));
-		datas.add(new User(2L, "ten@mail.com", "teten", "teten"));
-		datas.add(new User(3L, "ten@mail.com", "teten", "teten"));
+		List<User> datas = new ArrayList<>();
+		String email = "ten@mail.com";
+		String name = "myname";
+		String pass = "my pass";
+		datas.add(new User(1L, email, pass, name));
+		datas.add(new User(2L, email, pass, name));
+		datas.add(new User(3L, email, pass, name));
 
 		// Mockito.when(userService.findAllUsers()).thenReturn(datas);
 
@@ -40,10 +43,7 @@ class UserServiceTest {
 	@Test
 	void findUserById() {
 		final Long id = 1L;
-		//final User user = new User(1L, "ten@mail.com", "teten", "teten");
-
-		//given(userRepository.findById(id)).willReturn(Optional.of(user));
-
+		
 		final User expected = userService.findUserById(id);
 
 		assertThat(expected).isNotNull();

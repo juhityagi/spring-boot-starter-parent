@@ -1,16 +1,5 @@
 package id.test.springboottesting.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
-
 /**
  * @author e1077326
  *

@@ -6,15 +6,13 @@ pipeline {
   }
   stages {
     stage("Build, Test and Quality Gate Analysis") {
-      agent any
       steps {
         withSonarQubeEnv('SonarQube') {
-          sh 'mvn clean verify package sonar:sonar'
+          sh 'mvn clean verify sonar:sonar -PintegrationTest'
         }
       }
     }
     stage ("SonarQube Quality Gate Check") { 
-      agent none
       steps { 
         script{
           timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
@@ -24,7 +22,14 @@ pipeline {
               }
           } 
         }
-	    }
+      }
+    }
+  }
+  post {
+    success {
+      script {
+        jacoco()
+      }
     }
   }
 }

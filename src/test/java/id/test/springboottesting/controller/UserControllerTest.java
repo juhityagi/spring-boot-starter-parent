@@ -1,30 +1,27 @@
 package id.test.springboottesting.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import id.test.springboottesting.model.User;
-import id.test.springboottesting.service.UserService;
+import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.zalando.problem.ProblemModule;
 import org.zalando.problem.violations.ConstraintViolationProblemModule;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.CoreMatchers.is;
+import id.test.springboottesting.model.User;
+import id.test.springboottesting.service.UserService;
 
 
 /**
@@ -32,8 +29,8 @@ import static org.hamcrest.CoreMatchers.is;
  *
  */
 @WebMvcTest(controllers = UserController.class)
-@ActiveProfiles("test")
-class UserControllerTest {
+//@ActiveProfiles("test")
+class UserControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -76,6 +73,7 @@ class UserControllerTest {
 
         this.mockMvc.perform(get("/api/users/{id}", userId))
                 .andExpect(status().isOk())
+                //.andExpect(status().isNotFound()) - to introduce integration test error
                 .andExpect(jsonPath("$.email", is(user.getEmail())))
                 .andExpect(jsonPath("$.name", is(user.getName())));
     }
