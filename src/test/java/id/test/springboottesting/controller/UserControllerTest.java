@@ -30,7 +30,7 @@ import id.test.springboottesting.service.UserService;
  */
 @WebMvcTest(controllers = UserController.class)
 //@ActiveProfiles("test")
-class UserControllerIT {
+class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
